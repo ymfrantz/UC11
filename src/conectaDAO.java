@@ -1,33 +1,38 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+//Declarando variáveis;
 
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
-/**
- *
- * @author Adm
- */
 public class conectaDAO {
+    
+    Connection conn;
+    PreparedStatement st;
+    ResultSet rs;
+    
+    //Dados do banco;
+    String Driver = "com.mysql.cj.jdbc.Driver";
+    String DBUrl = "jdbc:mysql://localhost:3306/bancodb";
+    String DBUser = "root";
+    String DBPassword = "root";
     
     public Connection connectDB(){
         Connection conn = null;
         
         try {
-        
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/uc11?user=root&password=");
+            Class.forName(Driver);
+            conn = DriverManager.getConnection(DBUrl,DBUser,DBPassword);
+            return conn;
             
-        } catch (SQLException erro){
+        } catch (SQLException | ClassNotFoundException erro){
             JOptionPane.showMessageDialog(null, "Erro ConectaDAO" + erro.getMessage());
-        }
-        return conn;
+            return conn;
+        }         
     }
     
-}
+        }
