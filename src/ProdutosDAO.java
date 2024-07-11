@@ -110,7 +110,7 @@ public class ProdutosDAO {
 
         try {
             
-            st = conn.prepareStatement("SELECT * FROM produtos WHERE status = Vendido");
+            st = conn.prepareStatement("SELECT * FROM produtos WHERE status = 'Vendido'");
             rs = st.executeQuery();
 
             while (rs.next()) {
